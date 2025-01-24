@@ -11,10 +11,8 @@ class AnswersController < ApplicationController
     @answer.user = current_user
 
     if @answer.save
-      redirect_to @question, notice: '回答を投稿しました'
+      redirect_to @question, notice: 'Good vote!!! haha'
     else
-      @user_answer = current_user.answers.find_by(question: @question)
-        flash[:notice] = 'もう回答してるよ！'
       render 'questions/show', status: :unprocessable_entity
     end
   end
@@ -31,7 +29,7 @@ class AnswersController < ApplicationController
 
   def ensure_not_answered
     if current_user.answers.exists?(question: @question)
-      redirect_to @question, alert: 'この質問には既に回答済みです'
+      redirect_to @question, alert: 'もう回答してるよ〜ん'
     end
   end
 end

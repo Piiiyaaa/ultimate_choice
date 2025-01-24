@@ -17,10 +17,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_24_082140) do
   create_table "answers", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "question_id", null: false
-    t.string "choice"
+    t.string "choice", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["user_id", "question_id"], name: "index_answers_on_user_id_and_question_id", unique: true
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 

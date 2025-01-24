@@ -3,6 +3,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:name]
 
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :answered_questions, through: :answers, source: :question
+
   validates :name, presence: true, uniqueness: true
   
   def email_required?
@@ -13,6 +17,4 @@ class User < ApplicationRecord
     false
   end
 
-  has_many :questions, dependent: :destroy
-  has_many :answers, dependent: :destroy
 end
