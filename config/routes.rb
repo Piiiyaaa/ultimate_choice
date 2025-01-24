@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'answers/create'
   get 'homes/top'
   devise_for :users
   root "homes#top"
