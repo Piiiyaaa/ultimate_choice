@@ -26,13 +26,11 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    # ログイン中のユーザーに紐づく質問を作成
     @question = current_user.questions.build(question_params)
     if @question.save
-      # 質問が保存に成功した場合、詳細画面にリダイレクト
       redirect_to questions_path, notice: '質問を投稿しました'
     else
-      # 保存に失敗した場合、新規作成フォームを再表示
+      flash.now[:alert] = @question.errors.full_messages.join(', ')
       render :new, status: :unprocessable_entity
     end
   end
@@ -70,7 +68,7 @@ class QuestionsController < ApplicationController
 
   # 許可するパラメータを指定
   def question_params
-    params.require(:question).permit(:choice_one, :choice_two)
+    params.require(:question).permit(:choice_one, :choice_two, :choice_one_image, :choice_two_image)
   end
 
   # 現在のユーザーがこの質問を所有しているか確認

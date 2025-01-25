@@ -1,45 +1,30 @@
 <div class="container mt-4">
-  <!-- ページのタイトル -->
-  <h2>新しい質問を投稿</h2>
-
-  <!-- form_with ヘルパーを使用してフォームを作成 -->
-  <%= form_with(model: @question, local: true) do |f| %>
-    <!-- バリデーションエラーが存在する場合のエラーメッセージ表示 -->
-    <% if @question.errors.any? %>
-      <div class="alert alert-danger">
-        <!-- エラー件数を表示 -->
-        <h4><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h4>
-        <ul>
-          <!-- 全てのエラーメッセージをリスト表示 -->
-          <% @question.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <!-- フォームの入力フィールド: 選択肢1 -->
-    <div class="form-group">
-      <!-- 選択肢1のラベル -->
-      <%= f.label :choice_one, "選択肢1" %>
-      <!-- 選択肢1の入力欄 -->
-      <%= f.text_field :choice_one, class: "form-control" %>
+  <div class="card">
+    <div class="card-header">
+      <h2>新しい質問を投稿</h2>
     </div>
-
-    <!-- フォームの入力フィールド: 選択肢2 -->
-    <div class="form-group mt-3">
-      <!-- 選択肢2のラベル -->
-      <%= f.label :choice_two, "選択肢2" %>
-      <!-- 選択肢2の入力欄 -->
-      <%= f.text_field :choice_two, class: "form-control" %>
+    <div class="card-body">
+      <%= form_with(model: @question, local: true) do |f| %>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="mb-3">
+              <%= f.label :choice_one, "選択肢1", class: "form-label" %>
+              <%= f.text_field :choice_one, class: "form-control" %>
+              <%= f.file_field :choice_one_image, class: "form-control mt-2" %>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="mb-3">
+              <%= f.label :choice_two, "選択肢2", class: "form-label" %>
+              <%= f.text_field :choice_two, class: "form-control" %>
+              <%= f.file_field :choice_two_image, class: "form-control mt-2" %>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <%= f.submit "投稿する", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
-
-    <!-- フォーム送信ボタンと戻るボタン -->
-    <div class="mt-4">
-      <!-- フォーム送信ボタン -->
-      <%= f.submit "投稿する", class: "btn btn-primary" %>
-      <!-- 質問一覧ページに戻るリンク -->
-      <%= link_to "戻る", questions_path, class: "btn btn-secondary ml-2" %>
-    </div>
-  <% end %>
+  </div>
 </div>
