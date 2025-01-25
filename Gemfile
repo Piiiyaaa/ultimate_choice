@@ -47,6 +47,8 @@ gem 'pry-rails'  # デバッグ用
 gem 'bootstrap' # UIフレームワーク
 gem 'jquery-rails' # Bootstrap用
 gem 'sassc-rails'
+gem 'carrierwave', '2.2.2'
+gem 'mini_magick'  # 画像処理用
 
 # Use Sass to process CSS
 # gem "sassc-rails"
