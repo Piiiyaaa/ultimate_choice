@@ -1,6 +1,10 @@
 class ChoiceImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+  version :thumb do
+    process resize_to_fit: [300, 200]  # 横幅300px、高さ200pxに調整
+  end
+
   storage :file
 
   def store_dir

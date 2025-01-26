@@ -1,0 +1,36 @@
+.card {
+    border: 2px solid #333; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-color: #007bff;
+    }
+ }
+
+ .card.mb-3 {
+    margin-bottom: 2rem !important;  // デフォルトの3（1rem）から2rem に増加
+ }
+
+.choice-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 4px;
+}
+  
+.choice-box {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
