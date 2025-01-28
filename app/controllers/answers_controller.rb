@@ -1,9 +1,6 @@
 class AnswersController < ApplicationController
-  # ログイン必須
   before_action :authenticate_user!
-  # 対象の質問を設定
   before_action :set_question
-  # 回答済みでないことを確認
   before_action :ensure_not_answered, only: [:create]
 
   def create
@@ -13,6 +10,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to @question, notice: 'Good vote!!! haha'
     else
+      @answer.build_comment if @answer.comment.nil?  # コメントフォームのためのインスタンスを作成
       render 'questions/show', status: :unprocessable_entity
     end
   end
@@ -24,7 +22,7 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:choice)
+    params.require(:answer).permit(:choice, comment_attributes: [:content])  # コメントのパラメータを許可
   end
 
   def ensure_not_answered

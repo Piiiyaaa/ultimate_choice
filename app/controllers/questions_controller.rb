@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   # ログインしていないユーザーがアクセスできるアクションを制限
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!
 
   # 指定したアクションで、@question に対象の質問データをセットする
   before_action :set_question, only: [:show, :edit, :update, :destroy]
@@ -17,6 +17,7 @@ class QuestionsController < ApplicationController
   def show
     # 新しい回答オブジェクトを作成（回答フォーム用）
     @answer = Answer.new
+    @answer.build_comment  # コメントのフォーム用にインスタンスを作成
     # 現在のユーザーがこの質問に対して投稿した回答を取得（あれば表示するため）
     @user_answer = current_user&.answers&.find_by(question: @question)
   end

@@ -30,6 +30,13 @@
             </div>
           </div>
 
+          <%= f.fields_for :comment do |comment_form| %>
+            <div class="form-group mt-3">
+              <%= comment_form.label :content, "選んだ理由" %>
+              <%= comment_form.text_area :content, class: "form-control", required: true %>
+            </div>
+          <% end %>
+
           <div class="text-center mt-4">
             <%= f.submit "投票する", class: "btn btn-primary btn-lg" %>
           </div>
