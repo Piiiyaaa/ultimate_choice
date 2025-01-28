@@ -7,8 +7,8 @@
           <p class="description">究極の2択に答えを出すアプリ</p>
           <div class="cta-buttons">
             <% unless user_signed_in? %>
-              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light btn-lg me-3" %>
-              <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg" %>
+              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light btn-lg me-3 signup-btn" %>
+              <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg login-btn" %>
             <% end %>
           </div>
         </div>

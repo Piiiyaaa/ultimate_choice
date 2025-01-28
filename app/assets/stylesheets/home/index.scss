@@ -1,0 +1,80 @@
+// app/assets/stylesheets/home/index.scss
+@keyframes slideIn {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes slideInRight {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .top-section {
+    background: linear-gradient(45deg, #4158D0, #C850C0, #4158D0);
+    background-size: 200% 200%;
+    animation: gradientMove 10s ease infinite;
+    padding: 6rem 0;
+    color: white;
+    min-height: calc(100vh - 72px);  // ナビバーの高さを考慮
+    display: flex;
+    align-items: center;
+
+    .col-md-6 {
+        &:last-child {  // 画像を含む右側のカラム
+          display: flex;
+          justify-content: center;  // 中央寄せに変更
+        }
+      }
+    
+    .title {
+      animation: slideIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      font-size: 3.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    
+    .description {
+      animation: slideIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+      animation-fill-mode: both;
+      font-size: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    
+    .icon_image {
+      animation: slideInRight 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+      animation-fill-mode: both;
+      max-width: 85%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  
+    .cta-buttons {
+      animation: slideIn 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.6s;
+      animation-fill-mode: both;
+
+    .signup-btn:hover, .login-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .signup-btn:hover {
+      border-color: hsl(278, 100%, 50%); // 新規登録ボタンのホバー時のボーダー色
+    }
+  
+    .login-btn:hover {
+      border-color: hsl(278, 100%, 50%); // ログインボタンのホバー時のボーダー色（例として緑色を使用）
+     }
+   } 
+  }
