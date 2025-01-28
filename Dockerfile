@@ -1,16 +1,17 @@
-FROM ruby:3.0-alpine
-RUN apk update && \
-    apk upgrade && \
-    apk add --no-cache gcompat && \
-    apk add --no-cache linux-headers libxml2-dev make gcc libc-dev nodejs tzdata postgresql-dev postgresql git bash && \
-    apk add --virtual build-packages --no-cache build-base curl-dev
-RUN apt-get update && apt-get install -y imagemagick
+FROM ruby:3.2.2
+RUN apt-get update -qq && \
+    apt-get install -y build-essential \
+                       libpq-dev \
+                       nodejs \
+                       postgresql-client \
+                       imagemagick \
+                       git
+
 RUN mkdir /myapp
 WORKDIR /myapp
-ADD Gemfile /myapp/Gemfile
-ADD Gemfile.lock /myapp/Gemfile.lock
+COPY Gemfile /myapp/Gemfile
+COPY Gemfile.lock /myapp/Gemfile.lock
 RUN bundle install
-RUN apk del build-packages
-ADD . /myapp
+COPY . /myapp
 EXPOSE 4000
 CMD ["rails", "server", "-b", "0.0.0.0"]

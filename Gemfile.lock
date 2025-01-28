@@ -117,7 +117,8 @@ GEM
     factory_bot_rails (6.4.4)
       factory_bot (~> 6.5)
       railties (>= 5.0.0)
-    ffi (1.17.1)
+    ffi (1.17.1-aarch64-linux-gnu)
+    ffi (1.17.1-aarch64-linux-musl)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -295,6 +296,7 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
+  aarch64-linux
   aarch64-linux-musl
 
 DEPENDENCIES
@@ -323,7 +325,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 3.0.7p220
+   ruby 3.2.2p53
 
 BUNDLED WITH
    2.2.33
