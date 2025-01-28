@@ -6,12 +6,20 @@ default: &default
 development:
   <<: *default
   database: ultimate_choice_development
+  host: db
+  username: postgres
+  password: password
 
 test:
   <<: *default
   database: ultimate_choice_test
+  host: db
+  username: postgres
+  password: password
 
 production:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
   url: <%= ENV['DATABASE_URL'] %>
   
