@@ -67,6 +67,14 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
+  # アセットのデバッグモードを有効に
+  config.assets.debug = true
+
+  # アセットの自動コンパイルを有効に
+  config.assets.compile = true
+
+  # ファイル更新の検知を有効に
+  config.file_watcher = ActiveSupport::FileUpdateChecker
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 4000 }
 

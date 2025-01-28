@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Myapp</title>
+    <title>Ultimate Choice</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -11,9 +11,58 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+  <div class="container">
+    <%= link_to "Ultimate Choice", user_signed_in? ? questions_path : root_path, class: "navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "投稿する", new_question_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" %>
+          </li>
+        <% else %>
+          <% unless current_page?(root_path) %> <%# トップページ以外でのみ表示 %>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
 
-    <%= yield %>
+    <div class="container">
+      <% if notice %>
+        <div class="alert alert-success"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
+      
+      <%= yield %>
+
+      <footer id='footer' class='footer-bottom'>
+        <div class='container'>
+          <div class='row'>
+            <div class='col-sm-6 col-12'>
+              <div class='copyright'>
+                <p>© 2025. Ultimate Choice</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
   </body>
 </html>

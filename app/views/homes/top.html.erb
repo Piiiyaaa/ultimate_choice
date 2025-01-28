@@ -1,2 +1,21 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container-fluid p-0">
+  <div class="top-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <h1 class="title">Ultimate Choice</h1>
+          <p class="description">究極の2択に答えを出すアプリ</p>
+          <div class="cta-buttons">
+            <% unless user_signed_in? %>
+              <%= link_to "新規登録", new_user_registration_path, class: "btn btn-light btn-lg me-3 signup-btn" %>
+              <%= link_to "ログイン", new_user_session_path, class: "btn btn-outline-light btn-lg login-btn" %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <%= image_tag "Scarface_1983_41.jpg", class: "icon_image", alt: "Test" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<%= form_with(model: question) do |f| %>
+    <div class="mb-3">
+      <%= f.label :choice_one, "選択肢1", class: "form-label" %>
+      <%= f.text_field :choice_one, class: "form-control" %>
+      <%= f.file_field :choice_one_image, class: "form-control mt-2" %>
+    </div>
+  
+    <div class="mb-3">
+      <%= f.label :choice_two, "選択肢2", class: "form-label" %>
+      <%= f.text_field :choice_two, class: "form-control" %>
+      <%= f.file_field :choice_two_image, class: "form-control mt-2" %>
+    </div>
+  
+    <%= f.submit "投稿", class: "btn btn-primary" %>
+  <% end %>
+  

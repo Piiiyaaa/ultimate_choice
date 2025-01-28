@@ -4,6 +4,7 @@ RUN apk update && \
     apk add --no-cache gcompat && \
     apk add --no-cache linux-headers libxml2-dev make gcc libc-dev nodejs tzdata postgresql-dev postgresql git bash && \
     apk add --virtual build-packages --no-cache build-base curl-dev
+RUN apt-get update && apt-get install -y imagemagick
 RUN mkdir /myapp
 WORKDIR /myapp
 ADD Gemfile /myapp/Gemfile

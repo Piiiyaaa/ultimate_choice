@@ -1,0 +1,42 @@
+<div class="results" data-controller="comments" data-question-id="<%= @question.id %>">
+  <h3>回答結果</h3>
+  <% total = @question.answers.count %>
+  <% choice_one_count = @question.answers.where(choice: @question.choice_one).count %>
+  <% choice_one_percent = total > 0 ? (choice_one_count.to_f / total * 100).round : 0 %>
+
+  <div class="choices">
+    <div class="choice mb-3" 
+         data-bs-toggle="modal" 
+         data-bs-target="#commentsModal" 
+         data-action="click->comments#showComments"
+         data-choice="<%= @question.choice_one %>" 
+         style="cursor: pointer;">
+      <h4><%= @question.choice_one %></h4>
+      <div class="progress">
+        <div class="progress-bar" style="width: <%= choice_one_percent %>%">
+          <%= choice_one_percent %>%
+        </div>
+      </div>
+      <small class="text-muted"><%= choice_one_count %>票</small>
+    </div>
+
+    <div class="choice" 
+         data-bs-toggle="modal" 
+         data-bs-target="#commentsModal" 
+         data-action="click->comments#showComments"
+         data-choice="<%= @question.choice_two %>" 
+         style="cursor: pointer;">
+      <h4><%= @question.choice_two %></h4>
+      <div class="progress">
+        <div class="progress-bar" style="width: <%= 100 - choice_one_percent %>%">
+          <%= 100 - choice_one_percent %>%
+        </div>
+      </div>
+      <small class="text-muted"><%= @question.answers.count - choice_one_count %>票</small>
+    </div>
+  </div>
+
+  <div class="mt-3">
+    <p>あなたの選択: <%= @user_answer.choice %></p>
+  </div>
+</div>
