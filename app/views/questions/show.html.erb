@@ -1,56 +1,44 @@
-<div class="container mt-4">
-  <div class="card">
-    <div class="card-header">
-      <h2><%= @question.choice_one %> VS <%= @question.choice_two %></h2>
-      <small class="text-muted">投稿者: <%= @question.user.name %></small>
-    </div>
-
-    <div class="card-body">
-      <% if @user_answer %>
-        <%= render 'questions/results' %>
-      <% else %>
-        <%= form_with(model: [@question, @answer], local: true, class: "answer-form") do |f| %>
-          <div class="row">
-            <div class="col-md-6">
-              <div class="choice-block">
-                <div class="choice-card">
-                  <%= f.radio_button :choice, @question.choice_one, class: "choice-input" %>
-                  <%= f.label :choice, @question.choice_one, value: @question.choice_one, class: "choice-label" %>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-6">
-              <div class="choice-block">
-                <div class="choice-card">
-                  <%= f.radio_button :choice, @question.choice_two, class: "choice-input" %>
-                  <%= f.label :choice, @question.choice_two, value: @question.choice_two, class: "choice-label" %>
-                </div>
-              </div>
-            </div>
+<div data-controller="comments" data-comments-question-id-value="<%= @question.id %>">
+  <%= form_with(model: [@question, @answer], local: true, class: "answer-form") do |f| %>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="choice-block" 
+             data-action="click->comments#showComments"
+             data-comments-choice-value="<%= @question.choice_one %>">
+          <div class="choice-card">
+            <%= f.radio_button :choice, @question.choice_one, class: "choice-input" %>
+            <%= f.label :choice, @question.choice_one, value: @question.choice_one, class: "choice-label" %>
           </div>
+        </div>
+      </div>
 
-          <%= f.fields_for :comment do |comment_form| %>
-            <div class="form-group mt-3">
-              <%= comment_form.label :content, "選んだ理由" %>
-              <%= comment_form.text_area :content, class: "form-control", required: true %>
-            </div>
-          <% end %>
-
-          <div class="text-center mt-4">
-            <%= f.submit "投票する", class: "btn btn-primary btn-lg" %>
+      <div class="col-md-6">
+        <div class="choice-block" 
+             data-action="click->comments#showComments"
+             data-comments-choice-value="<%= @question.choice_two %>">
+          <div class="choice-card">
+            <%= f.radio_button :choice, @question.choice_two, class: "choice-input" %>
+            <%= f.label :choice, @question.choice_two, value: @question.choice_two, class: "choice-label" %>
           </div>
-        <% end %>
-      <% end %>
+        </div>
+      </div>
+    </div> <!-- row を閉じる -->
+
+    <div class="modal fade" id="commentsModal" data-comments-target="modal">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" data-comments-target="modalTitle"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <div data-comments-target="commentsContainer"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+  <% end %> <!-- form_with を閉じる -->
 </div>
-
-<style>
-.choice-box {
-  height: 230px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-</style>

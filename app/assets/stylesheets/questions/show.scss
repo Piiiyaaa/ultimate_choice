@@ -69,7 +69,11 @@
  }
  
  .choice-block.selected .choice-card {
+  background: #007bff;
   border-color: #007bff;
   box-shadow: 0 5px 15px rgba(0,123,255,0.3);
- }
- 
+}
+
+.choice-block.selected .choice-label {
+  color: white !important;
+}
