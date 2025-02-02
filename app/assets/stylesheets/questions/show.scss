@@ -41,22 +41,6 @@
   text-align: center;
  }
  
- .choice-input:checked + .choice-label {
-  color: white;
- 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #007bff;
-    z-index: -1;
-    animation: select-animation 0.3s ease forwards;
-  }
- }
- 
  @keyframes select-animation {
   0% {
     transform: scale(0);
@@ -68,12 +52,52 @@
   }
  }
  
- .choice-block.selected .choice-card {
-  background: #007bff;
+.choice-block.selected .choice-card {
+  background: #ffffff;
   border-color: #007bff;
   box-shadow: 0 5px 15px rgba(0,123,255,0.3);
 }
 
 .choice-block.selected .choice-label {
-  color: white !important;
+  color: rgb(0, 0, 0) !important;
+}
+
+.card.header-card {
+  transition: none;  /* アニメーション無効化 */
+  transform: none !important;  /* 変形無効化 */
+  box-shadow: none;  /* 影無効化 */
+}
+
+.header-card:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: #dee2e6 !important;  /* デフォルトのボーダー色を維持 */
+}
+
+/* 既存のカードスタイルは変更なし */
+.choice-block {
+  padding: 15px;
+}
+
+.question-title {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #2c3e50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-text {
+  margin: 0 1rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+.author-info {
+  color: #6c757d;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: right;
 }

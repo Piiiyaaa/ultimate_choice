@@ -12,8 +12,9 @@ export default class extends Controller {
 
   showComments(event) {
     event.preventDefault()
-    
-    // クリックされた要素を取得とラジオボタン選択
+    console.log("Clicked element:", event.currentTarget) // クリックされた要素を確認
+    console.log("Modal target:", this.modalTarget) 
+
     const choiceBlock = event.currentTarget
     const radio = choiceBlock.querySelector('.choice-input')
     
