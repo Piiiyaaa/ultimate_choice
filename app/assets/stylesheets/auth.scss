@@ -1,137 +1,138 @@
 .auth-container {
-    min-height: 100vh;
-    background: linear-gradient(rgba(246,247,249,0.8), rgba(246,247,249,0.8));
-    padding: 4rem 1rem;
+  min-height: 100vh;
+  background: linear-gradient(rgba($dark-bg, 0.9), rgba($dark-bg, 0.95));
+  padding: 4rem 1rem;
+}
+
+.auth-frame {
+  max-width: 430px;
+  margin: 0 auto;
+  background: linear-gradient(rgba($secondary-purple, 0.3), rgba($primary-purple, 0.3));
+  border: 1px solid rgba($primary-purple, 0.2);
+  border-radius: 5px;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  transition: all 0.5s ease;
+
+  &.frame-long {
+    height: 615px;
   }
-  
-  .auth-frame {
-    max-width: 430px;
-    margin: 0 auto;
-    background: linear-gradient(rgba(35,43,85,0.75), rgba(35,43,85,0.95));
-    border-radius: 5px;
-    box-shadow: 0 2px 7px rgba(0,0,0,0.2);
-    overflow: hidden;
-    transition: all 0.5s ease;
-    
-    &.frame-long {
-      height: 615px;
-    }
-    
-    &.frame-short {
-      height: 400px;
-      margin-top: 3rem;
-    }
+
+  &.frame-short {
+    height: 400px;
+    margin-top: 3rem;
   }
-  
-  .auth-nav {
-    padding-top: 2.5rem;
-    padding-bottom: 1.5rem;
-    opacity: 1;
-    transition: all 0.5s ease;
-    
-    &.nav-up {
-      transform: translateY(-100px);
-      opacity: 0;
-    }
-    
-    .nav-item {
-      display: inline-block;
-      padding: 0 1rem;
-      
-      a {
-        font-size: 1.125rem;
-        text-transform: uppercase;
-        color: rgba(255,255,255,0.3);
-        text-decoration: none;
-        transition: all 0.25s ease;
-        
-        &:hover {
-          color: rgba(255,255,255,0.5);
-        }
-        
-        &.active {
-          color: #ffffff;
-          border-bottom: 2px solid #1059FF;
-          padding-bottom: 0.5rem;
-        }
+}
+
+.auth-nav {
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  opacity: 1;
+  transition: all 0.5s ease;
+
+  &.nav-up {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  .nav-item {
+    display: inline-block;
+    padding: 0 1rem;
+
+    a {
+      font-size: 1.125rem;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: all 0.25s ease;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      &.active {
+        color: $light-text;
+        border-bottom: 2px solid $primary-purple;
+        padding-bottom: 0.5rem;
       }
     }
   }
-  
-  .auth-form {
-    padding: 2rem;
-    transition: all 0.5s ease;
-    
-    &.form-hidden {
-      display: none;  // transformの代わりにdisplay: noneを使用
+}
+
+.auth-form {
+  padding: 2rem;
+  transition: all 0.5s ease;
+
+  &.form-hidden {
+    display: none;
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      color: rgba(255, 255, 255, 0.7);
+      text-transform: uppercase;
+      font-size: 0.875rem;
+      margin-bottom: 0.5rem;
     }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-      
-      label {
-        display: block;
-        color: rgba(255,255,255,0.7);
-        text-transform: uppercase;
-        font-size: 0.875rem;
-        margin-bottom: 0.5rem;
-      }
-      
-      input {
-        width: 100%;
-        height: 35px;
-        padding: 0 1rem;
-        border: none;
-        border-radius: 20px;
-        background: rgba(255,255,255,0.2);
-        color: #ffffff;
-        
-        &:focus {
-          background: rgba(255,255,255,0.3);
-          outline: none;
-        }
-      }
-    }
-    
-    .form-check {
-      label {
-        color: rgba(255,255,255,0.7);
-        font-size: 0.875rem;
-      }
-    }
-    
-    .btn-auth {
+
+    input {
       width: 100%;
       height: 35px;
+      padding: 0 1rem;
       border: none;
       border-radius: 20px;
-      background-color: #1059FF;
+      background: rgba(255, 255, 255, 0.2);
       color: #ffffff;
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 0.875rem;
-      transition: background-color 0.3s ease;
-      
-      &:hover {
-        background-color: #0F4FE6;
+
+      &:focus {
+        background: rgba(255, 255, 255, 0.3);
+        outline: none;
       }
     }
   }
-  
-  .auth-links {
-    text-align: center;
-    border-top: 1px solid rgba(255,255,255,0.3);
-    padding-top: 1rem;
-    margin-top: 2rem;
-    
-    a {
-      color: rgba(255,255,255,0.3);
+
+  .form-check {
+    label {
+      color: rgba(255, 255, 255, 0.7);
       font-size: 0.875rem;
-      text-decoration: none;
-      transition: color 0.3s ease;
-      
-      &:hover {
-        color: rgba(255,255,255,0.5);
-      }
     }
   }
+
+  .btn-auth {
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 20px;
+    background-color: $primary-purple;
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.875rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: $hover-purple;
+    }
+  }
+}
+
+.auth-links {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 1rem;
+  margin-top: 2rem;
+
+  a {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

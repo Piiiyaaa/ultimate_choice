@@ -1,0 +1,51 @@
+// ナビゲーションバー
+.navbar {
+    background-color: rgba($dark-bg, 0.95) !important;
+    border-bottom: 1px solid $dark-border;
+  
+    .navbar-brand {
+      color: $primary-purple !important;
+      &:hover {
+        color: lighten($primary-purple, 10%) !important;
+      }
+    }
+  
+    .nav-link {
+      color: $muted-text !important;
+      &:hover {
+        color: $primary-purple !important;
+      }
+      &.active {
+        color: $primary-purple !important;
+      }
+    }
+  }
+  
+  // カード
+  .card {
+    background-color: $dark-card;
+    border: 1px solid $dark-border;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  
+    &:hover {
+      border-color: $primary-purple;
+    }
+  }
+  
+  // ボタン
+  .btn-primary {
+    background-color: $primary-purple;
+    border-color: $primary-purple;
+  
+    &:hover {
+      background-color: $hover-purple;
+      border-color: $hover-purple;
+    }
+  }
+  
+  // フッター
+  .footer {
+    background-color: $dark-bg;
+    border-top: 1px solid $dark-border;
+    color: $muted-text;
+  }

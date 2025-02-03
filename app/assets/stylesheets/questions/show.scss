@@ -1,11 +1,11 @@
 .choice-block {
   padding: 15px;
- }
- 
- .choice-card {
+}
+
+.choice-card {
   position: relative;
-  background: white;
-  border: 2px solid #dee2e6;
+  background: $dark-card;
+  border: 2px solid $dark-border;
   border-radius: 10px;
   height: 200px;
   display: flex;
@@ -14,19 +14,19 @@
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
- 
+
   &:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    border-color: #007bff;
+    box-shadow: 0 5px 15px rgba($primary-purple, 0.2);
+    border-color: $primary-purple;
   }
- }
- 
- .choice-input {
+}
+
+.choice-input {
   display: none;
- }
- 
- .choice-label {
+}
+
+.choice-label {
   width: 100%;
   height: 100%;
   display: flex;
@@ -34,14 +34,14 @@
   justify-content: center;
   font-size: 1.5rem;
   font-weight: bold;
-  color: #495057;
+  color: $light-text;
   cursor: pointer;
   margin: 0;
   padding: 20px;
   text-align: center;
- }
- 
- @keyframes select-animation {
+}
+
+@keyframes select-animation {
   0% {
     transform: scale(0);
     opacity: 0;
@@ -50,16 +50,16 @@
     transform: scale(1);
     opacity: 1;
   }
- }
- 
+}
+
 .choice-block.selected .choice-card {
-  background: #ffffff;
-  border-color: #007bff;
-  box-shadow: 0 5px 15px rgba(0,123,255,0.3);
+  background: rgba($primary-purple, 0.1);
+  border-color: $primary-purple;
+  box-shadow: 0 5px 15px rgba($primary-purple, 0.3);
 }
 
 .choice-block.selected .choice-label {
-  color: rgb(0, 0, 0) !important;
+  color: $light-text !important;
 }
 
 .card.header-card {
@@ -68,8 +68,8 @@
   box-shadow: none !important;
   cursor: default !important;
   pointer-events: none !important;
-  border: 1px solid #dee2e6 !important; /* 固定のボーダー */
-  background-color: white !important;
+  border: 1px solid $dark-border !important;
+  background-color: $dark-card !important;
   margin-bottom: 2rem !important;
 }
 
@@ -81,38 +81,16 @@
 .card.header-card:focus-within {
   transform: none !important;
   box-shadow: none !important;
-  border-color: #dee2e6 !important;
-  background-color: white !important;
+  border-color: $dark-border !important;
+  background-color: $dark-card !important;
   outline: none !important;
-}
-
-/* タイトルとVSテキストのスタイルを固定 */
-.question-title {
-  pointer-events: none !important;
-}
-
-/* 投稿者情報のスタイルを固定 */
-.author-info {
-  pointer-events: none !important;
-}
-
-/* カード内部の要素に対するポインターイベントを復活（必要な場合） */
-.card.header-card .card-header {
-  pointer-events: auto;
-}
-
-/* 選択カードのホバー効果は維持 */
-.choice-card {
-  pointer-events: auto !important;
-}.card.header-card .card-header {
-  pointer-events: auto;  /* 内部要素のイベントは有効に */
 }
 
 .question-title {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 600;
-  color: #2c3e50;
+  color: $light-text;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -121,59 +99,42 @@
 .vs-text {
   margin: 0 1rem;
   font-weight: 700;
-  color: #007bff;
-  display: inline-block; /* アニメーションのために必要 */
+  color: $primary-purple;
+  display: inline-block;
   animation: vsAppear 1.2s ease-out forwards, vsBounce 2s ease-in-out infinite 1.3s;
 }
 
 @keyframes vsAppear {
   0% {
-    transform: translateY(-50px) scale(0.5); /* 画面外＋縮小 */
+    transform: translateY(-50px) scale(0.5);
     opacity: 0;
   }
   60% {
-    transform: translateY(5px) scale(1.1); /* ちょっと大きめに */
+    transform: translateY(5px) scale(1.1);
     opacity: 1;
   }
   80% {
-    transform: translateY(-3px) scale(1); /* 軽く上に */
+    transform: translateY(-3px) scale(1);
   }
   100% {
-    transform: translateY(0) scale(1); /* 元の位置に */
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes vsBounce {
-  0%, 40% {
-    transform: skew(0deg, 0deg);
-  }
-  5% {
-    transform: skew(5deg, 5deg);
-  }
-  10% {
-    transform: skew(-4deg, -4deg);
-  }
-  15% {
-    transform: skew(3deg, 3deg);
-  }
-  20% {
-    transform: skew(-2deg, -2deg);
-  }
-  25% {
-    transform: skew(1deg, 1deg);
-  }
-  30% {
-    transform: skew(-0.6deg, -0.6deg);
-  }
-  35% {
-    transform: skew(0.3deg, 0.3deg);
-  }
+  0%, 40% { transform: skew(0deg, 0deg); }
+  5% { transform: skew(5deg, 5deg); }
+  10% { transform: skew(-4deg, -4deg); }
+  15% { transform: skew(3deg, 3deg); }
+  20% { transform: skew(-2deg, -2deg); }
+  25% { transform: skew(1deg, 1deg); }
+  30% { transform: skew(-0.6deg, -0.6deg); }
+  35% { transform: skew(0.3deg, 0.3deg); }
 }
 
 .author-info {
-  color: #6c757d;
+  color: $muted-text;
   font-size: 0.9rem;
   margin-top: 0.5rem;
   text-align: right;
 }
-
