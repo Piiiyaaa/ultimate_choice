@@ -39,6 +39,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_01_25_010147) do
     t.string "choice_two"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "title"
     t.string "choice_one_image"
     t.string "choice_two_image"
     t.index ["user_id"], name: "index_questions_on_user_id"
