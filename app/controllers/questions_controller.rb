@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :authenticate_user!
 
   # 指定したアクションで、@question に対象の質問データをセットする
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:show, :edit, :update, :destroy, :comments]
 
   # 指定したアクションで、現在ログインしているユーザーが対象の質問を所有しているか確認
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
@@ -58,6 +58,23 @@ class QuestionsController < ApplicationController
     @question.destroy
     # 質問一覧画面にリダイレクト
     redirect_to questions_path, notice: '質問を削除しました'
+  end
+
+  def comments
+    logger.debug "Comments action called with params: #{params.inspect}"
+    @answers = @question.answers.where(choice: params[:choice])
+                       .includes(:user, :comment)
+    
+    comments_data = @answers.map do |answer|
+      {
+        content: answer.comment&.content,
+        user_name: answer.user.name,
+        created_at: answer.created_at.strftime('%Y/%m/%d %H:%M')
+      }
+    end
+  
+    logger.debug "Sending comments_data: #{comments_data.inspect}"
+    render json: comments_data
   end
 
   private
