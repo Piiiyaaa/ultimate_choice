@@ -26,8 +26,9 @@
           <li class="nav-item">
             <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn btn-link nav-link" %>
           </li>
-        <% else %>
-          <% unless current_page?(root_path) %> <%# トップページ以外でのみ表示 %>
+          <% else %>
+          <%# 認証ページとトップページ以外でのみ表示 %>
+          <% unless current_page?(root_path) || controller_path.include?('devise/') %>
             <li class="nav-item">
               <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
             </li>
@@ -38,7 +39,6 @@
         <% end %>
       </ul>
     </div>
-  </div>
 </nav>
 
     <div class="container">
