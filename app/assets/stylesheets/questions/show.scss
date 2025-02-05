@@ -138,3 +138,39 @@
   margin-top: 0.5rem;
   text-align: right;
 }
+
+.title-wrapper {
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.question-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  color: $light-text;
+  margin: 0;
+  white-space: nowrap;
+  border-bottom: 2px solid $primary-purple;
+}
+
+.question-suffix {
+  color: $light-text;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.question-choices {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: $light-text;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

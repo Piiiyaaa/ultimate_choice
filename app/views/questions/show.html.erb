@@ -1,7 +1,15 @@
 <div class="container mt-4">
   <div class="card header-card mb-4">
     <div class="card-header">
-      <h2 class="question-title">
+      <% if @question.title.present? %>
+        <div class="title-wrapper">
+          <h2 class="question-title">
+            <%= @question.title %>
+            <span class="question-suffix">のはどっち？</span>
+          </h2>
+        </div>
+      <% end %>
+      <h2 class="question-choices">
         <span><%= @question.choice_one %></span>
         <span class="vs-text">VS</span>
         <span><%= @question.choice_two %></span>

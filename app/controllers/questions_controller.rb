@@ -86,7 +86,7 @@ class QuestionsController < ApplicationController
 
   # 許可するパラメータを指定
   def question_params
-    params.require(:question).permit(:choice_one, :choice_two, :choice_one_image, :choice_two_image)
+    params.require(:question).permit(:title, :choice_one, :choice_two, :choice_one_image, :choice_two_image)
   end
 
   # 現在のユーザーがこの質問を所有しているか確認
