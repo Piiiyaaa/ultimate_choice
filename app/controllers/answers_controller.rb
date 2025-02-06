@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
 
   def ensure_not_answered
     if current_user.answers.exists?(question: @question)
-      redirect_to @question, alert: 'もう回答してるよ〜ん'
+      redirect_to @question, alert: 'もう回答してるよ！'
     end
   end
 end

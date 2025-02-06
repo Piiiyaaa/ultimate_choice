@@ -174,3 +174,51 @@
   align-items: center;
   justify-content: center;
 }
+
+// 結果セクションのスタイル
+.section-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0;
+  margin-bottom: 1.5rem;
+  color: $light-text;
+  display: inline-block; // インライン要素にして文字幅に合わせる
+  position: relative; // 下線のための位置基準
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%; // 要素の幅いっぱいに
+    height: 2px;
+    background-color: $primary-purple;
+  }
+}
+
+// コメントセクションのスタイル
+.choice-comments {
+  margin-bottom: 2rem;
+  
+  h5 {
+    font-size: 1.2rem;
+    color: $light-text;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .comment-item {
+    background: rgba($dark-card, 0.5);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+
+    .text-muted {
+      color: $muted-text !important;
+    }
+
+    p {
+      color: $light-text;
+    }
+  }
+}
