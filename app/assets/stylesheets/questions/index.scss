@@ -37,3 +37,26 @@
     color: $light-text;
 
   }
+
+  .card-title {
+    .mb-2 {
+      font-size: 1.5rem;  // タイトルのサイズを大きく
+      font-weight: bold;   // 太字に
+      padding: 0.5rem 0;   // 上下の余白を追加
+      border-bottom: 2px solid $primary-purple;  // 下線を追加
+      margin-bottom: 1rem;
+      
+      .question-suffix {
+        color: $light-text;
+        margin-left: 0.5rem;
+        font-size: 1.2rem;     // タイトルより少し小さく
+        font-weight: normal;   // 通常の太さに
+      }
+    }
+  
+    .choices {
+      font-size: 1.1rem;
+      color: $light-text;
+      margin-top: 0.5rem;
+    }
+  }

@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
     @answer.user = current_user
 
     if @answer.save
-      redirect_to @question, notice: 'Good vote!!! haha'
+      redirect_to @question, notice: 'Good vote!'
     else
       @answer.build_comment if @answer.comment.nil?  # コメントフォームのためのインスタンスを作成
       render 'questions/show', status: :unprocessable_entity
@@ -27,7 +27,7 @@ class AnswersController < ApplicationController
 
   def ensure_not_answered
     if current_user.answers.exists?(question: @question)
-      redirect_to @question, alert: 'もう回答してるよ〜ん'
+      redirect_to @question, alert: 'もう回答してるよ！'
     end
   end
 end

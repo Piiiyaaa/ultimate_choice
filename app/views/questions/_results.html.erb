@@ -1,16 +1,11 @@
-<div class="results" data-controller="comments" data-comments-question-id-value="<%= @question.id %>">
-  <h3>回答結果</h3>
+<div class="results">
+<h3 class="section-header mb-4">回答結果</h3>
   <% total = @question.answers.count %>
   <% choice_one_count = @question.answers.where(choice: @question.choice_one).count %>
   <% choice_one_percent = total > 0 ? (choice_one_count.to_f / total * 100).round : 0 %>
 
   <div class="choices">
-  <div class="choice mb-3" 
-       data-bs-toggle="modal" 
-       data-bs-target="#commentsModal" 
-       data-action="click->comments#showComments"
-       data-comments-choice-value="<%= @question.choice_one %>" 
-       style="cursor: pointer;">
+    <div class="choice mb-3">
       <h4><%= @question.choice_one %></h4>
       <div class="progress">
         <div class="progress-bar" style="width: <%= choice_one_percent %>%">
@@ -20,12 +15,7 @@
       <small class="text-muted"><%= choice_one_count %>票</small>
     </div>
 
-    <div class="choice" 
-        data-bs-toggle="modal" 
-        data-bs-target="#commentsModal" 
-        data-action="click->comments#showComments"
-        data-comments-choice-value="<%= @question.choice_two %>" 
-        style="cursor: pointer;">
+    <div class="choice">
       <h4><%= @question.choice_two %></h4>
       <div class="progress">
         <div class="progress-bar" style="width: <%= 100 - choice_one_percent %>%">
@@ -40,17 +30,42 @@
     <p>あなたの選択: <%= @user_answer.choice %></p>
   </div>
 
-  <div class="modal fade" id="commentsModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">みんなの投票理由</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="comments-container">
-        <!-- コメントがここに動的に表示される -->
-      </div>
+  <!-- コメント一覧セクション -->
+  <div class="comments-section mt-4">
+  <h4 class="section-header mb-4">投票時のコメント</h4>
+    
+    <!-- 選択肢1のコメント -->
+    <div class="choice-comments mb-4">
+      <h5 class="border-bottom pb-2"><%= @question.choice_one %>を選んだ理由</h5>
+      <% @question.answers.includes(:comment, :user).where(choice: @question.choice_one).each do |answer| %>
+        <% if answer.comment&.content.present? %>
+          <div class="comment-item py-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <%= answer.user.name %> • <%= answer.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </small>
+            </div>
+            <p class="mb-0 mt-1"><%= answer.comment.content %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+    <!-- 選択肢2のコメント -->
+    <div class="choice-comments">
+      <h5 class="border-bottom pb-2"><%= @question.choice_two %>を選んだ理由</h5>
+      <% @question.answers.includes(:comment, :user).where(choice: @question.choice_two).each do |answer| %>
+        <% if answer.comment&.content.present? %>
+          <div class="comment-item py-2">
+            <div class="d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                <%= answer.user.name %> • <%= answer.created_at.strftime('%Y/%m/%d %H:%M') %>
+              </small>
+            </div>
+            <p class="mb-0 mt-1"><%= answer.comment.content %></p>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
-  </div>
-  </div>
+</div>

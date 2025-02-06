@@ -6,6 +6,7 @@ class Question < ApplicationRecord
   has_many :answering_users, through: :answers, source: :use
 
   validates :choice_one, :choice_two, presence: true
+  validates :title, presence: true 
 
   def answered_by?(user)
     answers.exists?(user: user)

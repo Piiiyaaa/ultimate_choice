@@ -3,5 +3,3 @@ import "@hotwired/turbo-rails"
 import "@hotwired/stimulus"
 import "bootstrap"
 import "./controllers"
-
-

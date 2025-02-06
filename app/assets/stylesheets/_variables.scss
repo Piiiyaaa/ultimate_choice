@@ -1,14 +1,12 @@
-// カラーパレット
-$primary-purple: #C850C0;      // トップページの明るい紫
-$secondary-purple: #4158D0;    // アクセントとして使用する青紫
-$dark-bg: #1a1a1a;            // 背景の濃い黒
-$dark-card: #242424;          // カードの背景色
-$dark-border: #333333;        // ボーダーカラー
-$light-text: #ffffff;         // 明るいテキスト
-$muted-text: rgba(255,255,255,0.7);  // 薄いテキスト
-$hover-purple: darken($primary-purple, 10%);  // ホバー時の紫
+$primary-purple: #C850C0;     
+$secondary-purple: #4158D0;  
+$dark-bg: #1a1a1a; 
+$dark-card: #242424;     
+$dark-border: #333333;      
+$light-text: #ffffff;   
+$muted-text: rgba(255,255,255,0.7);  
+$hover-purple: darken($primary-purple, 10%);  
 
-// Bootstrap変数のオーバーライド
 $primary: $primary-purple;
 $secondary: $secondary-purple;
 $body-bg: $dark-bg;
@@ -19,7 +17,6 @@ $input-bg: rgba(255,255,255,0.1);
 $input-color: $light-text;
 $input-border-color: $dark-border;
 
-// Navbar
 $navbar-dark-color: $light-text;
 $navbar-dark-hover-color: $primary-purple;
 $navbar-dark-active-color: $primary-purple;
