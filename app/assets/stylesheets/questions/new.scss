@@ -45,7 +45,7 @@
         margin-bottom: 1.5rem;
 
         .form-control {
-          background: $dark-card;
+          background-color: rgba(255, 255, 255, 0.1) !important;
           border: 1px solid $dark-border;
           color: $light-text;
           
@@ -62,8 +62,8 @@
         }
 
         .input-group-text {
-          background-color: #A020F0;
-          color: white;
+          background-color: transparent !important; // 背景を透明に
+          color: white !important; // 文字色を白に維持
           border: none;
           padding: 0.5rem 1rem;
         }
@@ -96,5 +96,17 @@
         }
       }
     }
+  }
+}
+
+.image-preview {
+  background: rgba($dark-card, 0.5);
+  border-radius: 8px;
+  padding: 0.5rem;
+  text-align: center;
+  
+  img {
+    border-radius: 4px;
+    object-fit: contain;
   }
 }
