@@ -1,3 +1,5 @@
+<%= debug resource %>
+
 <%# 完全に新しい認証フォーム %>
 <div class="auth-container" data-controller="auth">
   <div class="auth-frame" data-auth-target="frame">
@@ -41,14 +43,14 @@
     </div>
 
 <%# 新規登録フォーム %>
-<div class="auth-form form-hidden" data-auth-target="signupForm">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-      html: { 
-        data: { 
-          auth_form: "signup",
-          action: "submit->auth#handleSubmit" 
-        } 
-      }) do |f| %>
+    <div class="auth-form form-hidden" data-auth-target="signupForm">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+            html: { 
+              data: { 
+                auth_form: "signup",
+                action: "submit->auth#handleSubmit" 
+              } 
+            }) do |f| %>
 
         <div class="form-group">
           <%= f.label :name, "ユーザー名" %>
