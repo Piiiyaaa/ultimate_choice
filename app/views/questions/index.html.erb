@@ -1,5 +1,19 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="sort-form-container">
+      <span class="sort-form-label text-nowrap">並び順:</span>
+      <%= form_with url: questions_path, method: :get, local: true, class: "d-inline" do %>
+        <%= select_tag :sort,
+            options_for_select([
+              ['回答数順', 'answer_count'],
+              ['古い順', 'oldest'],
+              ['新規順', 'newest']
+            ], params[:sort]),
+            class: "sort-form-select",
+            onchange: "this.form.submit();"
+        %>
+      <% end %>
+    </div>
   </div>
 
   <div class="questions">
