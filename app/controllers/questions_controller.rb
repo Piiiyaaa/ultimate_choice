@@ -9,8 +9,14 @@ class QuestionsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    # 質問を作成日時が新しい順に取得
-    @questions = Question.all.order(created_at: :desc)
+    @questions = case params[:sort]
+                 when 'answer_count'
+                   Question.order_by_answer_count
+                 when 'oldest'
+                   Question.order(created_at: :asc)
+                 else 
+                   Question.order(created_at: :desc)  # デフォルトは新しい順
+                 end
   end
 
   # 質問の詳細を表示するアクション
