@@ -49,6 +49,7 @@ gem 'jquery-rails' # Bootstrap用
 gem 'sassc-rails'
 gem 'carrierwave', '2.2.2'
 gem 'mini_magick'  # 画像処理用
+gem 'fog-aws'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
