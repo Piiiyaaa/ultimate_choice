@@ -1,6 +1,3 @@
-<%= debug resource %>
-
-<%# 完全に新しい認証フォーム %>
 <div class="auth-container" data-controller="auth">
   <div class="auth-frame" data-auth-target="frame">
     <nav class="auth-nav" data-auth-target="nav">
@@ -8,12 +5,12 @@
         <li class="nav-item">
           <%= link_to "ログイン", new_user_session_path,
               class: "#{current_page?(new_user_session_path) ? 'active' : ''}",
-              data: { action: "click->auth#activateSignin", signin_link: true } %>
+              data: { turbo: false, action: "click->auth#activateSignin" } %>
         </li>
         <li class="nav-item">
           <%= link_to "新規登録", new_user_registration_path,
               class: "#{current_page?(new_user_registration_path) ? 'active' : ''}",
-              data: { action: "click->auth#activateSignup", signup_link: true } %>
+              data: { turbo: false, action: "click->auth#activateSignup" } %>
         </li>
       </ul>
     </nav>
@@ -22,6 +19,7 @@
     <div class="auth-form" data-auth-target="signinForm">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name),
           html: { 
+            id: "signin_user",
             data: { 
               auth_form: "signin",
               action: "submit->auth#handleSubmit" 
@@ -30,31 +28,38 @@
 
         <div class="form-group">
           <%= f.label :name, "ユーザー名" %>
-          <%= f.text_field :name, autofocus: true %>
+          <%= f.text_field :name, 
+              autofocus: true, 
+              id: "signin_user_name" %>
         </div>
 
         <div class="form-group">
           <%= f.label :password, "パスワード" %>
-          <%= f.password_field :password, autocomplete: "current-password" %>
+          <%= f.password_field :password, 
+              autocomplete: "current-password",
+              id: "signin_user_password" %>
         </div>
 
         <%= f.submit "ログイン", class: "btn-auth" %>
       <% end %>
     </div>
 
-<%# 新規登録フォーム %>
+    <%# 新規登録フォーム %>
     <div class="auth-form form-hidden" data-auth-target="signupForm">
-        <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
-            html: { 
-              data: { 
-                auth_form: "signup",
-                action: "submit->auth#handleSubmit" 
-              } 
-            }) do |f| %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name),
+          html: { 
+            id: "signup_user",
+            data: { 
+              auth_form: "signup",
+              action: "submit->auth#handleSubmit" 
+            } 
+          }) do |f| %>
 
         <div class="form-group">
           <%= f.label :name, "ユーザー名" %>
-          <%= f.text_field :name, autofocus: true %>
+          <%= f.text_field :name, 
+              autofocus: true,
+              id: "signup_user_name" %>
         </div>
 
         <div class="form-group">
@@ -62,15 +67,19 @@
           <% if @minimum_password_length %>
             <small class="text-white-50">(<%= @minimum_password_length %> 文字以上)</small>
           <% end %>
-          <%= f.password_field :password, autocomplete: "new-password" %>
+          <%= f.password_field :password, 
+              autocomplete: "new-password",
+              id: "signup_user_password" %>
         </div>
 
         <div class="form-group">
           <%= f.label :password_confirmation, "パスワード（確認）" %>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <%= f.password_field :password_confirmation, 
+              autocomplete: "new-password",
+              id: "signup_user_password_confirmation" %>
         </div>
 
-        <%= f.submit "新規登録", class: "btn-auth" %>
+        <%= f.submit "アカウント作成", value: "新規登録", class: "btn-auth" %>
       <% end %>
     </div>
   </div>

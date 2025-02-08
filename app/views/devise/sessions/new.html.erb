@@ -1,1 +1,39 @@
-<%= render "devise/shared/auth_form" %>
+<div class="auth-container">
+  <div class="auth-frame">
+    <nav class="auth-nav">
+      <ul class="text-center">
+        <li class="nav-item">
+          <%= link_to "ログイン", new_user_session_path,
+              class: "active",
+              data: { turbo: false } %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "新規登録", new_user_registration_path,
+              data: { turbo: false } %>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="auth-form">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name),
+          html: { id: "signin_user" }) do |f| %>
+
+        <div class="form-group">
+          <%= f.label :name, "ユーザー名" %>
+          <%= f.text_field :name, 
+              autofocus: true, 
+              id: "signin_user_name" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <%= f.password_field :password, 
+              autocomplete: "current-password",
+              id: "signin_user_password" %>
+        </div>
+
+        <%= f.submit "ログイン", class: "btn-auth" %>
+      <% end %>
+    </div>
+  </div>
+</div>
