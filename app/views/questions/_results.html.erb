@@ -1,5 +1,5 @@
 <div class="results">
-<h3 class="section-header mb-4">回答結果</h3>
+  <h3 class="section-header mb-4">回答結果</h3>
   <% total = @question.answers.count %>
   <% choice_one_count = @question.answers.where(choice: @question.choice_one).count %>
   <% choice_one_percent = total > 0 ? (choice_one_count.to_f / total * 100).round : 0 %>
@@ -32,7 +32,7 @@
 
   <!-- コメント一覧セクション -->
   <div class="comments-section mt-4">
-  <h4 class="section-header mb-4">投票時のコメント</h4>
+    <h4 class="section-header mb-4">投票時のコメント</h4>
     
     <!-- 選択肢1のコメント -->
     <div class="choice-comments mb-4">
@@ -68,4 +68,17 @@
       <% end %>
     </div>
   </div>
+
+  <% if current_user == @question.user %>
+    <div class="text-center mt-3">
+      <%= button_to "削除する", 
+          question_path(@question), 
+          method: :delete,
+          form: { data: { 
+            turbo_confirm: "本当に削除しますか？",
+            turbo_method: "delete"
+          }},
+          class: "btn btn-danger" %>
+    </div>
+  <% end %>
 </div>

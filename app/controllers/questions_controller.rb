@@ -58,12 +58,14 @@ class QuestionsController < ApplicationController
     end
   end
 
-  # 質問を削除するアクション
   def destroy
-    # 質問を削除
-    @question.destroy
-    # 質問一覧画面にリダイレクト
-    redirect_to questions_path, notice: '質問を削除しました'
+    begin
+      @question.destroy!
+      redirect_to questions_path, notice: "質問を削除しました"
+    rescue => e
+      Rails.logger.error "Failed to delete question: #{e.message}"
+      redirect_to question_path(@question), alert: "削除に失敗しました"
+    end
   end
 
   def comments
@@ -88,6 +90,14 @@ class QuestionsController < ApplicationController
   # 指定された ID の質問を取得し、@question にセットする
   def set_question
     @question = Question.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to questions_path, alert: "質問が見つかりませんでした"
+  end
+
+  def ensure_correct_user
+    unless @question.user == current_user
+      redirect_to questions_path, alert: "権限がありません"
+    end
   end
 
   # 許可するパラメータを指定

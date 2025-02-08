@@ -53,6 +53,14 @@ Rails.application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
+  # ログレベルを :debug に設定
+  config.log_level = :debug
+  
+  # すべてのリクエストをログに記録
+  config.logger = ActiveSupport::Logger.new(STDOUT)
+  config.logger.formatter = ::Logger::Formatter.new
+  config.log_level = :debug
+
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
