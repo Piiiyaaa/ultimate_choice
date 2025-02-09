@@ -8,7 +8,7 @@
               ['回答数順', 'answer_count'],
               ['古い順', 'oldest'],
               ['新規順', 'newest']
-            ], params[:sort]),
+            ], params[:sort] || 'answer_count'),  # デフォルト値を answer_count に設定
             class: "sort-form-select",
             onchange: "this.form.submit();"
         %>
