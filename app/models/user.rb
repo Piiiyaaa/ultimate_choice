@@ -1,34 +1,20 @@
-class ChoiceImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable,
+         authentication_keys: [:name]
+
+  has_many :questions, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :answered_questions, through: :answers, source: :question
+
+  validates :name, presence: true, uniqueness: true
   
-  storage :fog if Rails.env.production?  # 本番環境ではFog（Cloudflare R2）を使う
-
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+  def email_required?
+    false
   end
 
-  def default_url
-    "no_image.png"
+  def will_save_change_to_email?
+    false
   end
 
-  def extension_allowlist
-    %w(jpg jpeg gif png)
-  end
-
-  version :thumb do
-    process resize_to_fit: [400, 300]
-    
-    def full_filename(for_file)
-      "thumb_#{for_file}"
-    end
-  end
-
-  def url
-    if Rails.env.production?
-      base_url = ENV['CLOUDFLARE_R2_PUBLIC_URL'].to_s.chomp('/')
-      "#{base_url}#{super}"
-    else
-      super
-    end
-  end
 end
