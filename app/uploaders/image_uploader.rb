@@ -35,11 +35,9 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # 本番環境でのURL生成
   def url
-    if Rails.env.production? && path.present?
-      # パスの結合を適切に処理
+    if Rails.env.production?
       base_url = ENV['CLOUDFLARE_R2_PUBLIC_URL'].to_s.chomp('/')
-      path_part = path.to_s.start_with?('/') ? path[1..-1] : path
-      "#{base_url}/#{path_part}"
+      "#{base_url}#{super}"
     else
       super
     end
