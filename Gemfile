@@ -50,6 +50,7 @@ gem 'sassc-rails'
 gem 'carrierwave', '2.2.2'
 gem 'mini_magick'  # 画像処理用
 gem 'fog-aws'
+gem 'aws-sdk-s3', require: false
 
 # Use Sass to process CSS
 # gem "sassc-rails"
