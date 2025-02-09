@@ -9,13 +9,15 @@ class QuestionsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @questions = case params[:sort]
-                 when 'answer_count'
-                   Question.order_by_answer_count
+    sort_param = params[:sort] || 'answer_count'  # デフォルト値を設定
+    
+    @questions = case sort_param
                  when 'oldest'
                    Question.order(created_at: :asc)
-                 else 
-                   Question.order(created_at: :desc)  # デフォルトは新しい順
+                 when 'newest'
+                   Question.order(created_at: :desc)
+                 else  # answer_count または他の値の場合
+                   Question.order_by_answer_count
                  end
   end
 
