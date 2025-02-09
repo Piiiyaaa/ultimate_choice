@@ -20,6 +20,11 @@ CarrierWave.configure do |config|
     config.fog_public = true
     config.fog_attributes = { 'Cache-Control' => 'max-age=31536000' }
     
+    # asset_hostの設定を追加
+    if ENV['CLOUDFLARE_R2_PUBLIC_URL'].present?
+      config.asset_host = ENV['CLOUDFLARE_R2_PUBLIC_URL'].chomp('/')
+    end
+    
     # デバッグ情報を出力
     Rails.logger.info "=== CarrierWave Configuration ==="
     Rails.logger.info "Storage: #{config.storage}"
