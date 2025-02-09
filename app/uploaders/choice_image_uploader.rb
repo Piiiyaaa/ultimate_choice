@@ -1,7 +1,7 @@
 class ChoiceImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
   
-  storage :fog if Rails.env.production?  # 本番環境ではFog（Cloudflare R2）を使う
+  storage :fog if Rails.env.production?
 
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
@@ -20,15 +20,6 @@ class ChoiceImageUploader < CarrierWave::Uploader::Base
     
     def full_filename(for_file)
       "thumb_#{for_file}"
-    end
-  end
-
-  def url
-    if Rails.env.production?
-      base_url = ENV['CLOUDFLARE_R2_PUBLIC_URL'].to_s.chomp('/')
-      "#{base_url}#{super}"
-    else
-      super
     end
   end
 end
